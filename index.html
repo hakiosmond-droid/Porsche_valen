@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101110">
+  <meta name="description" content="A student-made visual tribute to the Porsche 911 GT3.">
+  <title>Porsche 911 GT3 — A Study in Precision</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root{--bg:#101110;--panel:#181a18;--panel2:#20221f;--text:#f3f1eb;--muted:#aaa99f;--gold:#c6ad72;--line:rgba(255,255,255,.12);--max:1200px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden}
+    a{color:inherit;text-decoration:none} img{display:block;max-width:100%} button{font:inherit}
+    .wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(16,17,16,.84);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-family:Manrope,sans-serif;font-size:.8rem;font-weight:800;letter-spacing:.16em}
+    .brand img{width:39px;height:39px;object-fit:contain;filter:grayscale(1)}
+    .navlinks{display:flex;align-items:center;gap:30px;color:#c5c4bc;font-size:.88rem}
+    .navlinks a{transition:color .2s}.navlinks a:hover{color:var(--gold)}
+    .nav-cta{border:1px solid rgba(198,173,114,.6);padding:10px 16px;border-radius:3px;color:var(--gold);font-size:.82rem;transition:.25s}
+    .nav-cta:hover{background:var(--gold);color:#171713}
+    .hero{position:relative;min-height:650px;display:flex;align-items:end;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url('porsche-hero.jpg') center 54%/cover no-repeat;transform:scale(1.025);animation:heroZoom 1.2s ease-out both}
+    .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(8,9,8,.92) 0%,rgba(8,9,8,.62) 42%,rgba(8,9,8,.05) 100%),linear-gradient(0deg,rgba(8,9,8,.72),transparent 55%)}
+    .hero-content{padding:100px 0 82px;max-width:650px;animation:rise .8s .12s both}
+    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:700}
+    .eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+    h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Manrope,sans-serif}
+    h1{font-size:clamp(3.4rem,8vw,7rem);line-height:.95;letter-spacing:-.075em;margin:22px 0 24px;font-weight:800}
+    h1 span{display:block;color:var(--gold)}
+    .hero-copy{max-width:450px;color:#d0cfc7;font-size:1.05rem;line-height:1.8;margin-bottom:30px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 20px;border:1px solid transparent;border-radius:3px;cursor:pointer;font-weight:700;font-size:.84rem;transition:transform .2s,background .2s,border-color .2s}
+    .btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--gold);color:#171713}.btn-primary:hover{background:#ddc68c}.btn-secondary{border-color:rgba(255,255,255,.36);background:rgba(20,20,18,.2);color:#fff}.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+    .hero-index{position:absolute;right:max(24px,calc((100vw - var(--max))/2));bottom:38px;color:#e7e5dc;font-size:.72rem;letter-spacing:.18em;writing-mode:vertical-rl}
+    .section{padding:100px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:38px}
+    .kicker{color:var(--gold);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:13px}
+    h2{font-size:clamp(2.1rem,4.5vw,3.8rem);line-height:1.08;letter-spacing:-.055em;margin-bottom:0}
+    .section-intro{max-width:420px;color:var(--muted);margin:0;font-size:.95rem}
+    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .detail-card{position:relative;min-height:330px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+    .detail-card img{width:100%;height:100%;min-height:330px;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .4s;filter:brightness(.82)}
+    .detail-card:hover img{transform:scale(1.045);filter:brightness(1)}
+    .card-label{position:absolute;left:24px;right:24px;bottom:22px;display:flex;align-items:end;justify-content:space-between;gap:12px;text-shadow:0 2px 16px #000}
+    .card-label h3{font-size:1.25rem;margin:0}.card-label span{font-size:.72rem;letter-spacing:.14em;color:#e0d5b8;text-transform:uppercase}
+    .story{background:var(--panel);border-block:1px solid var(--line)}
+    .story-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:start}
+    .story-number{font-family:Manrope,sans-serif;font-size:clamp(5rem,12vw,10rem);font-weight:800;line-height:.8;letter-spacing:-.1em;color:rgba(198,173,114,.22)}
+    .story-copy p{color:var(--muted);max-width:650px;font-size:1rem;line-height:1.9}.story-copy p:first-of-type{color:#e2e0d8;font-size:1.15rem}
+    .quote{margin-top:30px;border-left:2px solid var(--gold);padding:5px 0 5px 18px;color:var(--gold);font-family:Manrope,sans-serif;font-size:1rem}
+    .closing{padding:84px 0;text-align:center}.closing h2{max-width:760px;margin:0 auto 18px}.closing p{color:var(--muted);max-width:530px;margin:0 auto 28px}
+    footer{border-top:1px solid var(--line);padding:25px 0;color:#929188;font-size:.78rem}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}.footer-brand{color:var(--gold);letter-spacing:.12em;font-weight:700}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}@keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1.025)}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+    @media(max-width:760px){.wrap{width:min(100% - 32px,var(--max))}.nav{height:68px}.brand{font-size:.7rem;letter-spacing:.1em}.brand img{width:32px;height:32px}.navlinks{gap:14px;font-size:.78rem}.nav-cta{display:none}.hero{min-height:650px}.hero::before{background-position:58% center}.hero::after{background:linear-gradient(90deg,rgba(8,9,8,.83),rgba(8,9,8,.24)),linear-gradient(0deg,rgba(8,9,8,.84),transparent 75%)}.hero-content{padding:90px 0 76px}.hero-copy{font-size:.96rem}.hero-index{display:none}.section{padding:72px 0}.section-head{display:block}.section-intro{margin-top:18px}.gallery{gap:12px}.detail-card,.detail-card img{min-height:260px}.card-label{left:14px;right:14px;bottom:15px;display:block}.card-label h3{font-size:1rem}.card-label span{display:block;margin-bottom:5px;font-size:.62rem}.story-grid{grid-template-columns:1fr;gap:28px}.story-number{font-size:5rem}.footer-inner{align-items:flex-start;flex-direction:column;gap:8px}}
+    @media(max-width:440px){.navlinks{gap:10px}.navlinks a{font-size:.72rem}.navlinks a:nth-child(3){display:none}h1{font-size:3.6rem}.gallery{grid-template-columns:1fr}.detail-card,.detail-card img{min-height:270px}.actions .btn{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Porsche GT3 home"><img src="porsche-logo.png" alt="Porsche crest"><span>PORSCHE <span style="color:var(--gold)">/</span> GT3</span></a>
+      <div class="navlinks"><a href="#home">Overview</a><a href="#details">Details</a><a href="#story">The spirit</a></div>
+      <a class="nav-cta" href="#details">Explore the car ↗</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="wrap"><div class="hero-content">
+        <div class="eyebrow">A study in precision</div>
+        <h1 id="hero-title">PORSCHE <span>911 GT3</span></h1>
+        <p class="hero-copy">Engineered with purpose. Shaped by performance. A closer look at a machine where every line has a reason to exist.</p>
+        <div class="actions"><a class="btn btn-primary" href="#details">Explore the details <span aria-hidden="true">↘</span></a><a class="btn btn-secondary" href="#story">Discover the spirit</a></div>
+      </div></div>
+      <div class="hero-index">DESIGN · PERFORMANCE · PASSION</div>
+    </section>
+
+    <section class="section wrap" id="details">
+      <div class="section-head reveal"><div><div class="kicker">Look closer / 01—02</div><h2>Every detail<br>has a purpose.</h2></div><p class="section-intro">From the stance to the smallest finishing touches, the GT3's character comes through in the details. Take a closer look.</p></div>
+      <div class="gallery">
+        <article class="detail-card reveal"><img src="porsche-wheel.jpg" alt="Close-up detail of the Porsche wheel" loading="lazy"><div class="card-label"><div><span>01 / Engineering</span><h3>Form meets function</h3></div><span>↗</span></div></article>
+        <article class="detail-card reveal"><img src="porsche-headlight.jpg" alt="Close-up detail of the Porsche headlight" loading="lazy"><div class="card-label"><div><span>02 / Identity</span><h3>A signature look</h3></div><span>↗</span></div></article>
+      </div>
+    </section>
+
+    <section class="section story" id="story"><div class="wrap story-grid">
+      <div class="reveal"><div class="kicker">Beyond the silhouette</div><div class="story-number">911.</div></div>
+      <div class="story-copy reveal"><h2>Built around<br>the driving feeling.</h2><p>The Porsche 911 GT3 is a celebration of focus: purposeful proportions, motorsport-inspired design, and a driver-first philosophy.</p><p>This page is a small visual tribute to a car that makes engineering feel emotional. No clutter, no distractions—just the details that make the 911 instantly recognizable.</p><div class="quote">“Precision is not just a specification. It's a feeling.”</div></div>
+    </div></section>
+
+    <section class="closing wrap reveal"><div class="kicker">A personal passion project</div><h2>Some designs never need to shout.</h2><p>They just need to get every detail right. Thanks for taking a closer look at this student-made Porsche 911 GT3 showcase.</p><a class="btn btn-primary" href="#home">Back to the top ↑</a></section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span class="footer-brand">PORSCHE 911 GT3</span><span>Designed by Valen · Student project · Fan-made, not affiliated with Porsche AG</span><a href="#home">Back to top ↑</a></div></footer>
+  <script>
+    // Reveal sections gently as they enter the viewport.
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
